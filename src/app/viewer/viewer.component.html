@@ -1,0 +1,12 @@
+<p>
+  viewer works!
+</p>
+<div id="viewer" md-button>
+   <md-grid-list cols="2" [style.background]="'lightblue'" rowHeight="225px">
+   <md-grid-tile *ngFor="let c of selectedChannels">
+     <iframe id= "f{{i}}"
+      [src]="sanitizer.bypassSecurityTrustResourceUrl('http://live.fc2.com/embedPlayer/?id=' + c.id + '&lang=ja&suggest=1&thumbnail=1&adultaccess=1')"
+      frameborder="0" scrolling="no"></iframe>
+   </md-grid-tile>
+</md-grid-list>
+</div>

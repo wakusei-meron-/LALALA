@@ -1,0 +1,26 @@
+
+#viewer {
+  float: left;
+  width: 600px;
+
+  iframe{
+    width: 300px;
+    height: 225px;
+  }
+}
+
+#sidebar {
+  overflow-y: scroll;
+  float: right;
+  width: 300px;
+  height: 700px;
+}
+
+/* #viewer {
+  background-color: red;
+}
+
+#sidebar {
+  background-color: blue;
+}
+ */

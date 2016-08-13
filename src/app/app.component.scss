@@ -1,0 +1,33 @@
+$red: random(256)-1;
+$green: random(256)-1;
+$blue: random(256)-1;
+
+$screen_width: 900px;
+
+/* * {
+  background-color: rgb(random(256)-1, random(256)-1, random(256)-1);
+  border-color: rgb(random(256)-1, random(256)-1, random(256)-1);
+}
+ */
+ /***  レイアウト関連 **/
+header {
+  width: $screen_width;
+  margin: 0  auto 0;
+}
+
+#content {
+  width: $screen_width;
+  margin: 0 auto 0;
+  overflow: hidden;
+}
+
+footer {
+  width: 100%;
+  height: 120px;
+}
+
+/*** 色関連 ***/
+footer {
+  color: #9e9e9e;
+  background-color: #212121;
+}
