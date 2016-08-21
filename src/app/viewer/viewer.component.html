@@ -3,8 +3,8 @@
 </p>
 <div id="viewer" md-button>
   <md-grid-list cols="3" [style.background]="'lightblue'" rowHeight="225px">
-    <md-grid-tile *ngFor="let c of selectedChannels">
-      <app-player [channel]="c" (hideChannel)="hideChannel($event)"></app-player>
+    <md-grid-tile *ngFor="let sc of selectedChannels">
+      <app-player [channel]="sc" (hideChannel)="hideChannel($event)"></app-player>
     </md-grid-tile>
   </md-grid-list>
 </div>
