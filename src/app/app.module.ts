@@ -12,14 +12,16 @@ import { MdInputModule } from '@angular2-material/input';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { HomeComponent } from './home/home.component';
 import { ViewerComponent } from './viewer/viewer.component';
-import { SidebarComponent } from './viewer/sidebar.component';
+import { PlayerComponent } from './viewer/player/player.component';
+import { ChannelSortPipe } from './viewer/channel-sort.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ViewerComponent,
-    SidebarComponent
+    PlayerComponent,
+    ChannelSortPipe
   ],
   imports: [
     BrowserModule,

@@ -1,35 +1,71 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
 import { ViewerService } from './viewer.service';
 import { ChannelInfo } from './channel-info';
-// import { ChannelSortPipe, ExtractCountPipe } from './channel-sort-pipe';
-import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
+import { ChannelSortPipe } from './channel-sort.pipe';
 
 @Component({
   selector: 'my-viewer-list',
   templateUrl: 'viewer.component.html',
   styleUrls: ['viewer.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     HTTP_PROVIDERS,
     JSONP_PROVIDERS,
     ViewerService
   ]
+  // pipes[ChannelSortPipe]
 })
-export class ViewerComponent {
-
-  // channels: ChannelInfo[] = [];
-  @Input()
+export class ViewerComponent implements OnInit {
+  now: number = Date.now();
+  channels: ChannelInfo[] = [];
   selectedChannels: ChannelInfo[] = [];
-  constructor(private viewerService: ViewerService, private sanitizer: DomSanitizationService) {
-    this.sanitizer = sanitizer;
+  constructor(private viewerService: ViewerService) {}
+
+  ngOnInit() {
+    this.getFc2LiveInfo();
   }
 
-  srcUrl(c: ChannelInfo): SafeResourceUrl {
-    let url: string = 'http://live.fc2.com/embedPlayer/?id=' + c.id + '&lang=ja&suggest=1&thumbnail=1&adultaccess=1';
-    let surl = this.sanitizer.bypassSecurityTrustUrl(url);
-    console.log(surl);
-    return surl;
-    // return 'hoge'; // this.sanitizer.bypassSecurityTrustUrl('hoge');
+  onSelect(channel: ChannelInfo) {
+    // すでに選択している場合
+    if (this.selectedChannels.map(sc =>sc.id).indexOf(channel.id) > -1) {
+      this.selectedChannels = this.selectedChannels.filter(c =>
+        c.id !== channel.id
+      );
+      return;
+    }
+    this.selectedChannels.push(channel);
+    this.setUndesplayChannel();
+  }
+
+  getFc2LiveInfo() {
+    this.viewerService.getFc2LiveInfo()
+      .subscribe( channels => {
+        let pipe = new ChannelSortPipe;
+        this.channels = pipe.transform(channels);
+        this.selectedChannels = channels.slice(0, 9);
+        this.setUndesplayChannel();
+        setInterval(() => this.updateFc2LiveInfo(), 1000 * 60);
+      });
+  }
+  updateFc2LiveInfo() {
+    this.viewerService.getFc2LiveInfo()
+      .subscribe( channels => {
+        this.now = Date.now();
+        let pipe = new ChannelSortPipe;
+        this.channels = pipe.transform(channels);
+        this.setUndesplayChannel();
+      });
+  }
+
+  hideChannel(channel: ChannelInfo) {
+    this.selectedChannels = this.selectedChannels.filter(c => c.id !== channel.id);
+    this.setUndesplayChannel();
+  }
+
+  setUndesplayChannel() {
+    this.channels = this.channels.filter(c =>
+      this.selectedChannels.map(sc => sc.id).indexOf(c.id) === -1
+    );
   }
 }

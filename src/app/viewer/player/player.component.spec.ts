@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
-import { SidebarComponent } from './sidebar.component';
+import { PlayerComponent } from './player.component';
 
-describe('Component: Sidebar', () => {
+describe('Component: Player', () => {
   it('should create an instance', () => {
-    let component = new SidebarComponent();
+    let component = new PlayerComponent();
     expect(component).toBeTruthy();
   });
 });

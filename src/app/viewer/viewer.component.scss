@@ -1,19 +1,31 @@
 
 #viewer {
+  padding: 0;
   float: left;
-  width: 600px;
-
-  iframe{
-    width: 300px;
-    height: 225px;
-  }
+  width: 900px;
 }
 
 #sidebar {
-  overflow-y: scroll;
-  float: right;
-  width: 300px;
-  height: 700px;
+/* overflow-y: scroll; */
+float: right;
+width: 300px;
+height: 675px;
+md-list {
+  .subheader {
+    height: 60px;
+  }
+}
+  .display-list {
+    overflow-y: scroll;
+    width: 300px;
+    height: 277.5px;
+  }
+
+  .onair-list {
+    overflow-y: scroll;
+    width: 300px;
+    height: 277.5px;
+  }
 }
 
 /* #viewer {

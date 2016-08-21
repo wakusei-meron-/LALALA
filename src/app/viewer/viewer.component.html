@@ -2,11 +2,32 @@
   viewer works!
 </p>
 <div id="viewer" md-button>
-   <md-grid-list cols="2" [style.background]="'lightblue'" rowHeight="225px">
-   <md-grid-tile *ngFor="let c of selectedChannels">
-     <iframe id= "f{{i}}"
-      [src]="sanitizer.bypassSecurityTrustResourceUrl('http://live.fc2.com/embedPlayer/?id=' + c.id + '&lang=ja&suggest=1&thumbnail=1&adultaccess=1')"
-      frameborder="0" scrolling="no"></iframe>
-   </md-grid-tile>
-</md-grid-list>
+  <md-grid-list cols="3" [style.background]="'lightblue'" rowHeight="225px">
+    <md-grid-tile *ngFor="let c of selectedChannels">
+      <app-player [channel]="c" (hideChannel)="hideChannel($event)"></app-player>
+    </md-grid-tile>
+  </md-grid-list>
+</div>
+<div id="sidebar">
+  <md-list>
+    <h3 md-subheader class="subheader">表示一覧</h3>
+    <div class="display-list">
+      <md-list-item *ngFor="let channel of (selectedChannels | orderByCount)" (click)="onSelect(channel)">
+        <img md-list-avatar [src]="channel.image" alt="">
+        <h3 md-line>{{channel.name}}</h3>
+        <p md-line>{{channel.title}}</p>
+      </md-list-item>
+    </div>
+  </md-list>
+  <md-list>
+    <h3 md-subheader class="subheader">放送中一覧({{(now | date: 'shortTime')}} 更新)</h3>
+    <div class="onair-list">
+      <md-list-item *ngFor="let channel of (channels | orderByCount)" (click)="onSelect(channel)">
+        <img md-list-avatar [src]="channel.image" alt="">
+        <h3 md-line>{{channel.name}}</h3>
+        <p md-line>{{channel.title}}</p>
+        <p md-line>合計:{{channel.total}}　視聴数:{{channel.count}}</p>
+      </md-list-item>
+    </div>
+  </md-list>
 </div>
