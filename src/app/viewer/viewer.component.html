@@ -1,8 +1,6 @@
-<p>
-  viewer works!
-</p>
+<div class="banner"></div>
 <div id="viewer" md-button>
-  <md-grid-list cols="3" [style.background]="'lightblue'" rowHeight="225px">
+  <md-grid-list cols="3" [style.background-colr]="white" rowHeight="225px">
     <md-grid-tile *ngFor="let sc of selectedChannels">
       <app-player [channel]="sc" (hideChannel)="hideChannel($event)"></app-player>
     </md-grid-tile>
@@ -20,7 +18,7 @@
     </div>
   </md-list>
   <md-list>
-    <h3 md-subheader class="subheader">放送中一覧({{(now | date: 'shortTime')}} 更新)</h3>
+    <h3 md-subheader class="subheader"><md-icon onmouseover="" style="cursor: pointer;" (reload)="updateFc2LiveInfo()">replay</md-icon> 放送中一覧({{(now | date: 'shortTime')}} 更新)</h3>
     <div class="onair-list">
       <md-list-item *ngFor="let channel of (channels | orderByCount)" (click)="onSelect(channel)">
         <img md-list-avatar [src]="channel.image" alt="">

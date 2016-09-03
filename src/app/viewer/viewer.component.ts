@@ -3,6 +3,7 @@ import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
 import { ViewerService } from './viewer.service';
 import { ChannelInfo } from './channel-info';
 import { ChannelSortPipe } from './channel-sort.pipe';
+import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 @Component({
   selector: 'my-viewer-list',
@@ -12,7 +13,8 @@ import { ChannelSortPipe } from './channel-sort.pipe';
   providers: [
     HTTP_PROVIDERS,
     JSONP_PROVIDERS,
-    ViewerService
+    ViewerService,
+    MdIconRegistry
   ]
   // pipes[ChannelSortPipe]
 })
