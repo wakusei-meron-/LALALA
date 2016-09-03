@@ -17,11 +17,11 @@ import { ChannelSortPipe } from './viewer/channel-sort.pipe';
 
 @NgModule({
   declarations: [
+    AppComponent,
     ChannelSortPipe,
     ViewerComponent,
     PlayerComponent,
     HomeComponent,
-    AppComponent
   ],
   imports: [
     BrowserModule,
