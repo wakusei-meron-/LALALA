@@ -65823,10 +65823,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ViewerService = (function () {
+    // private channelsUrl = 'http://live.fc2.com/contents/allchannellist.php?callback=JSONP_CALLBACK';
     function ViewerService(jsonp) {
         this.jsonp = jsonp;
-        // private channelsUrl = 'http://live.fc2.com/adult/contents/allchannellist.php?callback=JSONP_CALLBACK';
-        this.channelsUrl = 'http://live.fc2.com/contents/allchannellist.php?callback=JSONP_CALLBACK';
+        this.channelsUrl = 'http://live.fc2.com/adult/contents/allchannellist.php?callback=JSONP_CALLBACK';
     }
     ViewerService.prototype.getFc2LiveInfo = function () {
         var _this = this;
