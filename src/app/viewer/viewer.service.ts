@@ -7,7 +7,7 @@ import { ChannelInfo } from './channel-info';
 
 @Injectable()
 export class ViewerService {
-  private channelsUrl = 'http://live.fc2.com/adult/contents/allchannellist.php?callback=JSONP_CALLBACK';
+  private channelsUrl = 'https://live.fc2.com/adult/contents/allchannellist.php?callback=JSONP_CALLBACK';
     // private channelsUrl = 'http://live.fc2.com/contents/allchannellist.php?callback=JSONP_CALLBACK';
 
     constructor(private jsonp: Jsonp) {}
